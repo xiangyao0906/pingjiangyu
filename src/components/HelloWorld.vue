@@ -1,58 +1,150 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+
+  <div class="login">
+
+
+    <div class="login-box">
+      <div class="top">
+        <div class="logo"><img src="../assets/img/liaoning_basketball.png" alt="辽宁三生制药飞豹篮球俱乐部"
+                               style="width: 40%;height: 40%"></div>
+      </div>
+
+      <div class="mid">
+
+        <el-form :model="dataForm"
+                 :rules="dataRule"
+                 ref="dataForm"
+                 status-icon>
+          <el-form-item prop="username">
+            <el-input class="info"
+                      v-model="dataForm.username"
+                      placeholder="帐号"></el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input class="info"
+                      v-model="dataForm.password"
+                      type="password"
+                      placeholder="密码"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <div class="item-btn"><input type="button"
+                                         value="登录"
+                                         @click="dataFormSubmit()"></div>
+          </el-form-item>
+        </el-form>
+
+
+      </div>
+
+      <div class="bottom">Copyright © 2023 长江实业有限公司</div>
+    </div>
+
+
   </div>
 </template>
 
 <script>
+
+
 export default {
+
   name: 'HelloWorld',
   props: {
     msg: String
+
+
+  },
+  data() {
+    return {
+      dataForm: {
+        username: '',
+        password: ''
+      },
+      dataRule: {
+        username: [
+          {required: true, message: '帐号不能为空', trigger: 'blur'}
+        ],
+        password: [
+          {required: true, message: '密码不能为空', trigger: 'blur'}
+        ]
+      }
+    }
+  },
+  methods: {
+    dataFormSubmit: {}
   }
+
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
+<style lang="scss">
+
+.login {
+  width: 100%;
+  height: 100%;
+  background: url(~@/assets/img/login-bg.png) no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.login .login-box {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.login .login-box .top {
+  text-align: center;
 }
-a {
-  color: #42b983;
+
+.login .login-box .top .logo {
+  font-size: 0;
+  width: fit-content;
+}
+
+
+.login .login-box .mid {
+  font-size: 14px;
+  width: 50%;
+  margin: auto;
+
+
+}
+
+.login .login-box .mid .item-btn {
+  margin-top: 20px;
+}
+
+.login .login-box .mid .item-btn input {
+  border: 0;
+  width: 100%;
+  height: 40px;
+  box-shadow: 0;
+  background: #1f87e8;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.info {
+  width: 210px;
+}
+
+.login-captcha {
+  height: 40px;
+}
+
+.login .login-box .bottom {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  color: #999;
+  font-size: 12px;
+  text-align: center;
 }
 </style>
